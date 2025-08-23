@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recetario Endémico</title> 
+</head>
+<body>
+    <div>
+        <header>
+            <h1>Recetario Endémico</h1>
+            <p>Tu colección personal de recetas tradicionales y creaciones culinarias</p>
+        </header>
+        <section>
+            <h2>🍳 Añadir Nueva Receta</h2>
+            <form>
+                <div>
+                    <label>Nombre de la Receta:</label>
+                    <input type="text"required>
+                </div>
+                
+                <div>
+                    <label>Ingredientes:</label>
+                    <div>
+                        <div>
+                            <input type="text" placeholder="Ingrediente" required>
+                            <input type="text" placeholder="Cantidad" required>
+                        </div>
+                    </div>
+                    <br>
+                    <button type="button">+ Añadir otro ingrediente</button>
+                </div>
+                <div>
+                    <label>Ingredientes:</label>
+                    <textarea placeholder="Describe el paso a paso de la preparación..." required></textarea>
+                </div>
+                <div>
+                    <label>Imagen del Plato:</label>
+                    <input type="file" accept="image/*">
+                </div>
+                <div>
+                    <label>Tiempo de preparación (minutos):</label>
+                    <input type="number" min="1" required>
+                </div>
+                <div>
+                    <label>Dificultad:</label>
+                    <select required>
+                        <option value="facil">Fácil</option>
+                        <option value="media">Media</option>
+                        <option value="dificil">Difícil</option>
+                    </select>
+                </div>
+                <button type="submit">Guardar Receta</button>
+            </form>
+        </section>
+        
+        <section>
+            <h2>📚 Mis Recetas</h2>
+            <div class="filtros">
+                <input type="text" 
+                placeholder="Buscar recetas...">
+                <select>
+                    <option>Todas las dificultades</option>
+                    <option>Fácil</option>
+                    <option>Media</option>
+                    <option>Difícil</option>
+                </select>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
