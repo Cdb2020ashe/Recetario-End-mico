@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pequeño Recetario Endémico</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <i class="fas fa-utensils text-primary me-2"></i>
+                <span class="fw-bold">JoinTech</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#home">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#recipes">Recetario</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contacto</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="container h-100">
+            <div class="row h-100 align-items-center">
+                <div class="col-lg-6 hero-content animate-fade-in-up">
+                    <h1 class="display-3 fw-bold text-white mb-4">Pequeño Recetario Endémico</h1>
+                    <p class="lead text-white mb-5">Organiza tus recetas favoritas y comparte tu pasión por la cocina</p>
+                    <div class="d-flex gap-3">
+                        <button onclick="document.getElementById('recipes').scrollIntoView({behavior: 'smooth'})" class="btn btn-light btn-lg px-4 animate-pulse">Explorar Recetas</button>
+                        <button onclick="document.getElementById('recipeForm').scrollIntoView({behavior: 'smooth'})" class="btn btn-custom btn-lg px-4">Agregar Receta</button>
+                    </div>
+                </div>
+                <div class="col-lg-6 d-none d-lg-block">
+                    <div class="glass-effect p-4 rounded-4">
+                        <img src="imagenes/Many-kinds-of-food-meat-tomatoes-pie_1600x900.jpg" alt="Variedad de deliciosos platillos" class="rounded-4 img-fluid shadow-lg">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recipes Section -->
+    <section id="recipes" class="py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="display-4 fw-bold">Mi Recetario</h2>
+                <div class="section-divider w-25 mx-auto mb-4"></div>
+                
+                <!-- Barra de búsqueda y filtros -->
+                <div class="row justify-content-center mb-4">
+                    <div class="col-md-8">
+                        <div class="input-group mb-3 shadow-sm">
+                            <span class="input-group-text bg-white border-end-0"><i class="fas fa-search text-muted"></i></span>
+                            <input type="text" id="searchInput" class="form-control form-control-lg border-start-0" 
+                                placeholder="Buscar recetas..." aria-label="Buscar recetas">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Filtros por categoría -->
+                <div class="row justify-content-center mb-4" id="categoryFilters">
+                    <div class="col-12 text-center">
+                        <div class="btn-group flex-wrap" role="group" aria-label="Filtros de categoría">
+                            <input type="radio" class="btn-check" name="categoryFilter" id="filterAll" autocomplete="off" checked>
+                            <label class="btn btn-outline-primary m-1 rounded-pill" for="filterAll">Todas</label>
+                            
+                            <input type="radio" class="btn-check" name="categoryFilter" id="filterBreakfast" autocomplete="off" value="Desayuno">
+                            <label class="btn btn-outline-primary m-1 rounded-pill" for="filterBreakfast">
+                                <i class="fas fa-coffee me-1"></i> Desayuno
+                            </label>
+                            
+                            <input type="radio" class="btn-check" name="categoryFilter" id="filterLunch" autocomplete="off" value="Almuerzo">
+                            <label class="btn btn-outline-primary m-1 rounded-pill" for="filterLunch">
+                                <i class="fas fa-utensils me-1"></i> Almuerzo
+                            </label>
+                            
+                            <input type="radio" class="btn-check" name="categoryFilter" id="filterDinner" autocomplete="off" value="Cena">
+                            <label class="btn btn-outline-primary m-1 rounded-pill" for="filterDinner">
+                                <i class="fas fa-moon me-1"></i> Cena
+                            </label>
+                            
+                            <input type="radio" class="btn-check" name="categoryFilter" id="filterDessert" autocomplete="off" value="Postre">
+                            <label class="btn btn-outline-primary m-1 rounded-pill" for="filterDessert">
+                                <i class="fas fa-ice-cream me-1"></i> Postres
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Recipe Form -->
+            <div class="card glass-effect shadow-lg mb-5">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="mb-0"><i class="fas fa-plus-circle me-2"></i>Agregar Nueva Receta</h3>
+                </div>
+                <div class="card-body p-4">
+                    <form id="recipeForm">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="recipeName" class="form-label">Nombre de la Receta <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control form-control-lg" id="recipeName" 
+                                    placeholder="Ej: Pizza Margarita" 
+                                    required
+                                    minlength="3"
+                                    maxlength="100"
+                                    pattern="[A-Za-záéíóúÁÉÍÓÚñÑ\s]+"
+                                    data-invalid-message="Por favor ingresa un nombre válido (solo letras y espacios)">
+                                <div class="invalid-feedback">
+                                    El nombre de la receta es obligatorio y debe tener al menos 3 caracteres.
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="recipeCategory" class="form-label">Categoría <span class="text-danger">*</span></label>
+                                <select class="form-select form-control-lg" id="recipeCategory" required>
+                                    <option value="">Selecciona una categoría...</option>
+                                    <option value="desayuno">Desayuno</option>
+                                    <option value="almuerzo">Almuerzo</option>
+                                    <option value="cena">Cena</option>
+                                    <option value="postre">Postre</option>
+                                    <option value="bebida">Bebida</option>
+                                    <option value="otros">Otros</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="recipeImage" class="form-label">Imagen de la Receta</label>
+                            <input type="file" class="form-control" id="recipeImage" accept="image/jpeg, image/png, image/webp"
+                                data-max-size="5242880"
+                                data-invalid-message="El archivo debe ser una imagen (JPG, PNG o WebP) de máximo 5MB">
+                            <div class="form-text">Formatos aceptados: JPG, PNG, WebP (máx. 5MB)</div>
+                            <div class="invalid-feedback">
+                                Por favor, selecciona una imagen válida (JPG, PNG o WebP) de máximo 5MB.
+                            </div>
+                        </div>
+                        <div class="mb-3" id="imagePreviewContainer" style="display: none;">
+                            <label class="form-label">Vista previa:</label>
+                            <div class="border p-2 rounded text-center">
+                                <img id="imagePreview" src="#" alt="Vista previa de la imagen" class="img-fluid" style="max-height: 200px;">
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="ingredients" class="form-label">Ingredientes <span class="text-danger">*</span></label>
+                            <textarea id="ingredients" class="form-control border-0" 
+                                    rows="3" 
+                                    style="min-height: 120px; resize: none;" 
+                                    placeholder="Escribe un ingrediente por línea..."
+                                    required
+                                    data-min-ingredients="1"
+                                    data-invalid-message="Debes agregar al menos un ingrediente"></textarea>
+                            <div class="invalid-feedback">
+                                Por favor, ingresa al menos un ingrediente.
+                            </div>
+                            <div class="form-text">Escribe un ingrediente por línea. Ej: 2 tazas de harina</div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="instructions" class="form-label">Instrucciones de Preparación <span class="text-danger">*</span></label>
+                            <textarea class="form-control" id="instructions" 
+                                    rows="6" 
+                                    placeholder="Describe paso a paso cómo preparar la receta..."
+                                    required
+                                    minlength="20"
+                                    data-invalid-message="Las instrucciones deben tener al menos 20 caracteres"></textarea>
+                            <div class="invalid-feedback">
+                                Por favor, proporciona instrucciones detalladas para preparar la receta (mínimo 20 caracteres).
+                            </div>
+                            <div class="form-text">Sé lo más detallado posible. Incluye tiempos de cocción y temperaturas si es necesario.</div>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <label for="notes" class="form-label">Notas Personales</label>
+                            <textarea class="form-control" 
+                                    id="notes" 
+                                    rows="3" 
+                                    placeholder="Consejos, sustituciones o anécdotas..."
+                                    maxlength="500"
+                                    data-invalid-message="Las notas no pueden exceder los 500 caracteres"></textarea>
+                            <div class="form-text">Opcional. Comparte consejos, sustituciones de ingredientes o anécdotas sobre esta receta.</div>
+                            <div class="invalid-feedback">
+                                Las notas no pueden exceder los 500 caracteres.
+                            </div>
+                        </div>
+                        
+                        <div class="form-actions">
+    <button type="button" id="discardRecipe" class="btn btn-outline-danger">
+        <i class="fas fa-times-circle me-2"></i>Descartar Receta
+    </button>
+    <button type="submit" class="btn btn-primary" id="saveRecipe">
+        <i class="fas fa-save me-2"></i>Guardar Receta
+    </button>
+</div>
+                    </form>
+                </div>
+            </div>
+            
+            <!-- Recipe List -->
+            <div class="row" id="recipeList">
+                <div class="col-12 text-center py-5">
+                    <i class="fas fa-utensils fa-3x text-muted mb-3"></i>
+                    <h4 class="text-muted">No hay recetas aún. ¡Agrega tu primera receta!</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-5 bg-light">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="display-4 fw-bold">Contacto</h2>
+                <div class="section-divider w-25 mx-auto"></div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <div class="card glass-effect shadow-lg">
+                        <div class="card-body p-5 text-center">
+                            <div class="mb-4">
+                                <i class="fas fa-envelope fa-3x text-primary mb-3"></i>
+                                <h4 class="mb-2">Nipuro2020@gmail.com</h4>
+                                <p class="text-muted">Respuesta en 24 horas</p>
+                            </div>
+                            <div class="mb-4">
+                                <i class="fas fa-phone-alt fa-3x text-primary mb-3"></i>
+                                <h4 class="mb-2">3227351573</h4>
+                                <p class="text-muted">Lunes a Viernes, 9am-6pm</p>
+                            </div>
+                            <div class="d-grid gap-3">
+                                <a href="mailto:nipuro2020@gmail.com" class="btn btn-primary btn-lg">
+                                    <i class="fas fa-paper-plane me-2"></i>Enviar Correo
+                                </a>
+                                <a href="tel:+3227351573" class="btn btn-success btn-lg">
+                                    <i class="fas fa-phone me-2"></i>Llamar
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Floating Action Button -->
+    <div class="floating-btn animate-pulse" title="Agregar Receta Rápida">
+        <i class="fas fa-plus"></i>
+    </div>
+
+    <!-- Notification Toast -->
+    <div class="notification-toast" id="notificationToast">
+        <div class="toast-header bg-success text-white">
+            <i class="fas fa-check-circle me-2"></i>
+            <strong class="me-auto">Éxito</strong>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast"></button>
+        </div>
+        <div class="toast-body">
+            ¡Receta agregada exitosamente!
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom Script -->
+    <script src="app.js"></script>
+    <script>
+    // Eliminar el banner de GitHub Pages si existe
+    document.addEventListener('DOMContentLoaded', function() {
+        const githubBanner = document.querySelector('.footer, .footer-octicon, .octocat-footer');
+        if (githubBanner) {
+            githubBanner.style.display = 'none';
+        }
+    });
+</script>
+</body>
+</html>
